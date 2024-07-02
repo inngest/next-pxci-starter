@@ -14,6 +14,7 @@
     "@prisma/client": "^5.16.1",
     "inngest": "^3.19.18",
     "next": "14.2.4",
+    "openai": "^4.52.2",
     "pg": "^8.12.0",
     "react": "^18",
     "react-dom": "^18"

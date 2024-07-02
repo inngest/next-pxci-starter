@@ -7,7 +7,7 @@ import { inngest } from "@/inngest";
 
 export async function create(message: string) {
   const createdMessage = await prisma.messages.create({
-    data: { text: message },
+    data: { text: message, author: "User" },
   });
 
   await inngest.send({

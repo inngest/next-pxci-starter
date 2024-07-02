@@ -18,7 +18,8 @@ datasource db {
 }
 
 model messages {
-  text String
+  text   String
+  author String
 
   // xata fields
   xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
