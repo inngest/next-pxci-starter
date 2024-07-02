@@ -13,7 +13,7 @@
 ### Steps already done for the boilerplate
 
 ```bash
-npx create-next-app@latest --typescript xata-and-friends
+npx create-next-app@latest --typescript next-pxci-starter
 npm install prisma --save-dev
 npm install @prisma/adapter-pg pg
 
