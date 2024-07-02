@@ -15,7 +15,7 @@ How the app works:
 
 - The app features a sign in/sign out functionality using Clerk and the avatar of the currently logged user is shown in the top-right corner
 - User's messages are sent to/read from Xata using Prisma ORM
-- The message is then fetched from Xata and passed to Inngest for further possible data manipulation or ensured reliability
+- The message is then fetched from Xata and passed to Inngest, which makes a call to OpenAI to generate a response
 
 ## Resources Get Started
 
