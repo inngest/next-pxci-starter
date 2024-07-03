@@ -58,8 +58,8 @@ export default async function Home() {
             </span>
           </h2>
           <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Prisma ORM is a next-generation Node.js and TypeScript ORM offering
-            intuitive data model, automated migrations, type-safety &
+            Prisma ORM is an open source Node.js and TypeScript ORM with a
+            readable data model, automated migrations, type-safety &
             auto-completion.
           </p>
         </a>
