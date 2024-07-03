@@ -2,7 +2,7 @@
 
 This is a Next.js starter project featuring:
 
-- **[Prisma](https://www.prisma.io/docs):** Prisma ORM is a next-generation Node.js and TypeScript ORM offering intuitive data model, automated migrations, type-safety and auto-completion.
+- **[Prisma](https://www.prisma.io/docs):** Prisma ORM is an open source Node.js and TypeScript ORM with a readable data model, automated migrations, type-safety, and auto-completion.
 - **[Xata](https://xata.io/docs):** Xata is a serverless data platform, providing a full-text and vector search engine, record-level file attachments, table-level aggregations and an optional ask endpoint to engage with with OpenAI's ChatGPT API.
 - **[Clerk](https://clerk.com/docs):** Clerk is a User Management Platform, offering a complete suite of embeddable UIs, flexible APIs, and admin dashboards to authenticate and manage your users.
 - **[Inngest](https://www.inngest.com/docs):** Inngest is an event-driven durable execution engine that enables you to run reliable code on any platform, including serverless. Inngest functions enable you to write complex long-lived workflows in a single function, on any platform.
@@ -157,3 +157,4 @@ Open [http://localhost:8288](http://localhost:8288) with your browser to see the
   - [Rate limiting](https://inngest.com/docs/guides/rate-limiting) - Rate limiting is a hard limit on how many function runs can start within a time period. Events that exceed the rate limit are skipped and do not trigger functions to start. This prevents excessive function runs over a given time period.
   - [Steps](https://www.inngest.com/docs/learn/inngest-steps) - Steps are fundamental building blocks in Inngest functions. Each step represents individual task (or other unit of work) within a function that can be executed independently.
   - [Throttling](https://inngest.com/docs/guides/throttling) - Throttling allows you to specify how many function runs can start within a time period. When the limit is reached, new function runs over the throttling limit will be enqueued for the future. 
+- Docs: [Prisma ORM](https://www.prisma.io/docs/orm)
