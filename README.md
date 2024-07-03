@@ -5,7 +5,7 @@ This is a Next.js starter project featuring:
 - **[Prisma](https://www.prisma.io/docs):** Prisma ORM is an open source Node.js and TypeScript ORM with a readable data model, automated migrations, type-safety, and auto-completion.
 - **[Xata](https://xata.io/docs):** Xata is a serverless data platform, providing a full-text and vector search engine, record-level file attachments, table-level aggregations and an optional ask endpoint to engage with with OpenAI's ChatGPT API.
 - **[Clerk](https://clerk.com/docs):** Clerk is a User Management Platform, offering a complete suite of embeddable UIs, flexible APIs, and admin dashboards to authenticate and manage your users.
-- **[Inngest](https://www.inngest.com/docs):** Inngest is an event-driven durable execution engine that enables you to run reliable code on any platform, including serverless. Inngest functions enable you to write complex long-lived workflows in a single function, on any platform.
+- **[Inngest](https://www.inngest.com/docs):** Inngest is an event-driven durable execution engine that enables you to run reliable code on any platform, including serverless.
 
 ## App overview
 
@@ -15,7 +15,7 @@ How the app works:
 
 - The app features a sign in/sign out functionality using Clerk and the avatar of the currently logged user is shown in the top-right corner
 - User's messages are sent to/read from Xata using Prisma ORM
-- The message is then fetched from Xata and passed to Inngest, which makes a call to OpenAI to generate a response
+- Finally, an Inngest function is responsible for reliably generating an answer to the user's message using OpenAI
 
 ## Resources Get Started
 

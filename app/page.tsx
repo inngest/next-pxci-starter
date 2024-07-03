@@ -117,9 +117,7 @@ export default async function Home() {
           </h2>
           <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
             Inngest is an event-driven durable execution engine that enables you
-            to run reliable code on any platform, including serverless. Inngest
-            functions enable you to write complex long-lived workflows in a
-            single function, on any platform.
+            to run reliable code on any platform, including serverless.
           </p>
         </a>
       </div>
