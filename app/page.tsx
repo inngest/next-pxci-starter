@@ -62,10 +62,10 @@ export default async function Home() {
             </span>
           </h2>
           <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Xata is a serverless data platform, providing a full-text and vector
-            search engine, record-level file attachments, table-level
-            aggregations and an optional ask endpoint to engage with with
-            OpenAI's ChatGPT API.
+Xata is a serverless data platform, built on PostgreSQL which
+            provides a full-text and vector search engine, record-level file
+            attachments, table-level aggregations and an optional ask endpoint
+            to engage with with OpenAI's ChatGPT API.
           </p>
         </a>
 
