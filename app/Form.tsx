@@ -1,21 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { useAuth } from "@clerk/nextjs";
 
 export default function Form(props: { create: any; latestMessage: any }) {
   const [message, setMessage] = useState("");
   const [sending, setSending] = useState<boolean>(false);
 
-  const { userId, isLoaded } = useAuth();
-
-  if (!isLoaded) {
-    return <p>Loading...</p>;
-  }
-
   const onSubmit = async (e: any) => {
     setSending(true);
-    await props.create(message, userId);
+    await props.create(message);
   };
 
   const handleRefresh = async (e: any) => {
