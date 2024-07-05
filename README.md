@@ -9,11 +9,12 @@ This is a Next.js starter project featuring:
 
 ## App overview
 
-![This is a screenshot of a web page with the title "Next.js PXCI starter" visible in the browser tab. The page features a text box titled "Send a message to yourself:" with a "Send" button below it. Below the button, there is a section displaying "Your last message: 'hello'". A user profile icon is visible in the top right corner of the page.](./app.png)
+![This is a screenshot of a web page with the title "Next.js PXCI starter" visible in the browser tab. The page features an unprotected landing page. Once logged in, you will see a text box titled "Send a message to yourself:" with a "Send" button below it. Below the button, there is a section displaying "Your last message: 'hello'". A user profile icon is visible in the top right corner of the page.](./app.png)
 
 How the app works:
 
-- The app features a sign in/sign out functionality using Clerk and the avatar of the currently logged user is shown in the top-right corner
+- The app features sign in/sign out functionality using Clerk and the avatar of the currently logged user is shown in the top-right corner
+- A Clerk protected dashboard route, leading to the messaging UI after successful authentication
 - User's messages are sent to/read from Xata using Prisma ORM
 - Finally, an Inngest function is responsible for reliably generating an answer to the user's message using OpenAI
 
@@ -47,7 +48,7 @@ npm install -g @xata.io/cli
 xata auth login
 ```
 
-Next: 
+Next:
 
 1. Choose Create new API key in the browser.
 2. Create account or sign in in the browser.
@@ -72,6 +73,7 @@ postgresql://<YOUR_WORKSPACE_ID>:<YOUR_API_KEY>@<YOUR_REGION>.sql.xata.sh:5432/<
 ```
 
 <!-- REWORD -->
+
 Back in your code editor, in your project's root create a new file called `.env`. Using the value from the previous step, add a new environment variable called `DATABASE_URL`, like this:
 
 ```conf
@@ -117,6 +119,12 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_abcdefghijklmnopqrstuvwxyz
 CLERK_SECRET_KEY=••••••••••••••••••••••••••••••••••••••••••••••••••
 ```
 
+You'll also need to add one more variable to let Clerk know where to redirect on successful login
+
+```conf
+NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL=/dashboard
+```
+
 You can skip the other suggested steps in the Clerk setup, they've already been included in this boilerplate.
 
 ## Running the app
@@ -156,5 +164,6 @@ Open [http://localhost:8288](http://localhost:8288) with your browser to see the
   - [Prioritization](https://inngest.com/docs/guides/priority) - Priority allows you to dynamically execute some runs ahead or behind others based on any data. This allows you to prioritize some jobs ahead of others without the need for a separate queue.
   - [Rate limiting](https://inngest.com/docs/guides/rate-limiting) - Rate limiting is a hard limit on how many function runs can start within a time period. Events that exceed the rate limit are skipped and do not trigger functions to start. This prevents excessive function runs over a given time period.
   - [Steps](https://www.inngest.com/docs/learn/inngest-steps) - Steps are fundamental building blocks in Inngest functions. Each step represents individual task (or other unit of work) within a function that can be executed independently.
-  - [Throttling](https://inngest.com/docs/guides/throttling) - Throttling allows you to specify how many function runs can start within a time period. When the limit is reached, new function runs over the throttling limit will be enqueued for the future. 
+  - [Throttling](https://inngest.com/docs/guides/throttling) - Throttling allows you to specify how many function runs can start within a time period. When the limit is reached, new function runs over the throttling limit will be enqueued for the future.
 - Docs: [Prisma ORM](https://www.prisma.io/docs/orm)
+- Resource: [Clerk Hackathon resources](https://www.notion.so/clerkdev/Clerk-Hackathon-Resources-1993bf4a3b3841fb91b01b209b9258d1)

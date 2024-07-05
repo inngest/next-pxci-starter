@@ -1,28 +1,7 @@
-"use server";
-
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import Form from "./Form";
-import { prisma } from "@/prisma/client";
-import { inngest } from "@/inngest";
-
-export async function create(message: string) {
-  const createdMessage = await prisma.messages.create({
-    data: { text: message, author: "User" },
-  });
-
-  await inngest.send({
-    name: "app/message.sent",
-    data: {
-      messageId: createdMessage.xata_id,
-    },
-  });
-}
+import Link from "next/link";
 
 export default async function Home() {
-  const message = await prisma.messages.findFirst({
-    orderBy: { xata_createdat: "desc" },
-  });
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -40,7 +19,13 @@ export default async function Home() {
         </div>
       </div>
 
-      <Form create={create} latestMessage={message} />
+      <SignedIn>
+        <h1>Go to the dashboard to create new messages</h1>
+        <Link href="/dashboard">Dashboard</Link>
+      </SignedIn>
+      <SignedOut>
+        <h1>Sign in to create new messages</h1>
+      </SignedOut>
 
       <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]"></div>
 
@@ -77,10 +62,10 @@ export default async function Home() {
             </span>
           </h2>
           <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Xata is a serverless data platform, built on PostgreSQL which
-            provides a full-text and vector search engine, record-level file
-            attachments, table-level aggregations and an optional ask endpoint
-            to engage with with OpenAI's ChatGPT API.
+            Xata is a serverless data platform, providing a full-text and vector
+            search engine, record-level file attachments, table-level
+            aggregations and an optional ask endpoint to engage with with
+            OpenAI's ChatGPT API.
           </p>
         </a>
 
