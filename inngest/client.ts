@@ -1,11 +1,13 @@
 import { Inngest, InngestMiddleware } from "inngest";
 import { PrismaClient } from "@prisma/client";
+import { auth } from "@clerk/nextjs/server";
 
 // make Prisma available in the Inngest functions
 const prismaMiddleware = new InngestMiddleware({
   name: "Prisma Middleware",
   init() {
     const prisma = new PrismaClient();
+    const { userId } = auth();
 
     return {
       onFunctionRun(ctx) {
@@ -15,6 +17,7 @@ const prismaMiddleware = new InngestMiddleware({
               // Anything passed via `ctx` will be merged with the function's arguments
               ctx: {
                 prisma,
+                userId,
               },
             };
           },
