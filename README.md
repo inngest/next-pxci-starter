@@ -47,17 +47,11 @@ npm install -g @xata.io/cli
 xata auth login
 ```
 
-Next: 
+Next:
 
 1. Choose Create new API key in the browser.
 2. Create account or sign in in the browser.
 3. Create a new API key.
-
-#### Enable direct Postgres access in your Xata account
-
-1. Go to the [Xata dashboard](https://app.xata.io/). If you **haven't** previously created any Xata database, click "Skip connection guide" button.
-2. Go to your workspace settings.
-3. Select "Direct access to Postgres".
 
 #### Create a new Xata database with direct Postgres access
 
@@ -72,6 +66,7 @@ postgresql://<YOUR_WORKSPACE_ID>:<YOUR_API_KEY>@<YOUR_REGION>.sql.xata.sh:5432/<
 ```
 
 <!-- REWORD -->
+
 Back in your code editor, in your project's root create a new file called `.env`. Using the value from the previous step, add a new environment variable called `DATABASE_URL`, like this:
 
 ```conf
@@ -156,5 +151,5 @@ Open [http://localhost:8288](http://localhost:8288) with your browser to see the
   - [Prioritization](https://inngest.com/docs/guides/priority) - Priority allows you to dynamically execute some runs ahead or behind others based on any data. This allows you to prioritize some jobs ahead of others without the need for a separate queue.
   - [Rate limiting](https://inngest.com/docs/guides/rate-limiting) - Rate limiting is a hard limit on how many function runs can start within a time period. Events that exceed the rate limit are skipped and do not trigger functions to start. This prevents excessive function runs over a given time period.
   - [Steps](https://www.inngest.com/docs/learn/inngest-steps) - Steps are fundamental building blocks in Inngest functions. Each step represents individual task (or other unit of work) within a function that can be executed independently.
-  - [Throttling](https://inngest.com/docs/guides/throttling) - Throttling allows you to specify how many function runs can start within a time period. When the limit is reached, new function runs over the throttling limit will be enqueued for the future. 
+  - [Throttling](https://inngest.com/docs/guides/throttling) - Throttling allows you to specify how many function runs can start within a time period. When the limit is reached, new function runs over the throttling limit will be enqueued for the future.
 - Docs: [Prisma ORM](https://www.prisma.io/docs/orm)
