@@ -10,7 +10,11 @@ export const messageSent = inngest.createFunction(
   { id: "message-sent" }, // Each function should have a unique ID
   { event: "app/message.sent" }, // When an event by this name received, this function will run
 
-  async ({ event, step, prisma }) => {
+  async ({ event, step, prisma, userId }) => {
+    if (!userId) {
+      throw new Error("You must be logged in to utilize this functionality!");
+    }
+
     // Fetch data from the database
     const message = await prisma.messages.findUnique({
       where: {
