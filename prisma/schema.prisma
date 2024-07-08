@@ -1,14 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-
-  // Enable if using driver adapters
-  // previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
@@ -18,12 +9,40 @@ datasource db {
 }
 
 model messages {
-  text   String
-  author String
-
-  // xata fields
+  text           String
+  author         String
   xata_updatedat DateTime @default(now()) @db.Timestamptz(6)
   xata_id        String   @unique(map: "_pgroll_users_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
   xata_version   Int      @default(0)
   xata_createdat DateTime @default(now()) @db.Timestamptz(6)
+}
+
+model user {
+  xata_id        String   @unique(map: "_pgroll_user_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  firstName      String
+  lastName       String
+  email          String   @unique
+  profilePic     String
+  isAdmin        Boolean? @default(false)
+  isActive       Boolean? @default(true)
+  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
+  clerkUserId    String   @unique
+  role           Role     @default(USER)
+}
+
+model event {
+  xata_id       String     @unique(map: "_pgroll_event_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  name          String
+  eventDate     DateTime[]
+  eventDetails  String
+  eventCategory String
+  rsvpName      String
+  rsvpTel       Int
+  eventImage    String
+}
+
+enum Role {
+  USER
+  EVENTPLANNER
+  EVENTVENDOR
 }
