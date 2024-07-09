@@ -9,7 +9,7 @@ This is a Next.js starter project featuring:
 
 ## App overview
 
-![This is a screenshot of a web page with the title "Next.js PXCI starter" visible in the browser tab. The page features an unprotected landing page. Once logged in, you will see a text box titled "Send a message to yourself:" with a "Send" button below it. Below the button, there is a section displaying "Your last message: 'hello'". A user profile icon is visible in the top right corner of the page.](./app.png)
+![This is a screenshot of a web page with the title "Next.js PXCI starter" visible in the browser tab. The page features an unprotected landing page. Once logged in, you will see a text box titled "Send a message to yourself:" with a "Send" button below it. Below the button, there is a section displaying "Your last message: 'hello'". A user profile icon is visible in the top right corner of the page.](./app-light.png)
 
 How the app works:
 
