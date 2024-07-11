@@ -1,3 +1,4 @@
+import { user } from "@prisma/client";
 import { inngest } from "./client";
 import OpenAI from "openai";
 
@@ -56,3 +57,39 @@ export const messageSent = inngest.createFunction(
     return { event, body: `Here's your last message: ${newMessage?.text}!` };
   }
 );
+
+export const syncUserFromClerk = inngest.createFunction(
+  { id: "sync-user-from-clerk" },
+  { event: "app/user.synced" },
+
+  async ({ event, step, prisma }) => {
+   
+    const user: user = event.data;
+
+ 
+    const upsertUser = await prisma.user.upsert({
+      where: { clerkUserId: user.clerkUserId },
+      update: {
+        email: user.email,
+        role: user.role,
+     
+      },
+      create: {
+        clerkUserId: user.clerkUserId,
+        email: user.email,
+        firstName: user.firstName,
+        profilePic: user.profilePic,
+        lastName: user.lastName,
+        role: user.role,
+
+        
+      },
+    });
+
+    console.log("User upserted:", upsertUser);
+
+    return { status: "User synced successfully" };
+  }
+);
+
+

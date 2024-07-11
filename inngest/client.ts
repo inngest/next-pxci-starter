@@ -28,4 +28,7 @@ const prismaMiddleware = new InngestMiddleware({
 export const inngest = new Inngest({
   id: "next-pxci-starter",
   middleware: [prismaMiddleware],
+  keys: {
+    api: process.env.NEXT_PUBLIC_INNGEST_API_KEY, // Ensure this matches your environment variable
+  },
 });
