@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import EventList from "../app/EventList";
-import CategoryFilter from "../app/CategoryList";
+import EventList from "./_components/EventList";
+import CategoryFilter from "./_components/CategoryList";
 
 const App = () => {
   const [category, setCategory] = React.useState("All Categories");

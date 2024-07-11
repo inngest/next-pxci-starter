@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import evtImg from "../public/images/Rectangle 1.svg";
 
-import EventCard from "../app/_components/EventCard";
+import EventCard from "./EventCard";
 import CategoryFilter from "./CategoryList";
 
 const events = [
@@ -59,15 +59,15 @@ const EventList = () => {
 
   return (
     <div>
-       <div className="max-w-[1291px] mx-auto">
-      <CategoryFilter
-        category={selectedCategory}
-        setCategory={setSelectedCategory}
-        date={selectedDate}
-        setDate={setSelectedDate}
-      />
+      <div className="max-w-[1291px] mx-auto">
+        <CategoryFilter
+          category={selectedCategory}
+          setCategory={setSelectedCategory}
+          date={selectedDate}
+          setDate={setSelectedDate}
+        />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-4 md:mx-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-4 md:mx-15 xl:mx-20">
         {filteredEvents.map((event) => (
           <div key={event.id}>
             <EventCard event={event} />
