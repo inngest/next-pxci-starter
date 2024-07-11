@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import evtImg from "../public/images/Rectangle 1.svg";
+import evtImg from "../../public/images/Rectangle 1.svg";
 
 import EventCard from "./EventCard";
 import CategoryFilter from "./CategoryList";
