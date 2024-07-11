@@ -6,13 +6,15 @@ import {
 } from "@clerk/nextjs";
 import Image from "next/image";
 import React from "react";
-import logo from "../public/images/Frame 44 (1).png";
+import logo from "../../public/images/Frame 44 (1).png";
 import Link from "next/link";
 
 const Navbar = () => {
   return (
     <div className="flex flex-row justify-between items-center px-4 py-1">
+      <Link href={"/"}>
       <Image src={logo} alt="logo" className="w-[300px] h-[65px]" />
+      </Link>
       <div>
         <SignedOut>
           <Link href="signup">
