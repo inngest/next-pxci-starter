@@ -5,6 +5,7 @@ import { Card, CardContent } from "../../components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Icon } from "@iconify/react/dist/iconify.js";
 
 const EventCard_h = ({ event }: {event:any}) => {
   return (
@@ -15,7 +16,7 @@ const EventCard_h = ({ event }: {event:any}) => {
         className="md:w-full h-full  w-full"
       />
       <div className=" bg-white w-full sm:mt-[-20px] flex flex-col gap-2 border-[#022543]   ">
-        <div className="flex flex-row justify-between px-3 items-center border-b py-2">
+        <div className="flex flex-row justify-between px-3 items-center border-b py-1">
           <p className="text-sm sm:text-base">{event.eventType || ""}</p>
           <p className="text-xs text-gray-600">{event.time || ""}</p>
         </div>
@@ -25,6 +26,19 @@ const EventCard_h = ({ event }: {event:any}) => {
         <p className=" text-[#022543] text-xl sm:text-xl md:text-xl font-bold ">{event.organizer || ""}</p>
         <p className="text-sm text-[#022543] font-normal">
           {event.location || ""}
+          <div className="flex gap-4 ">
+
+          <div className='flex gap-2 items-center  font-medium  '>
+              <Icon icon="fluent:star-20-filled"  className='h-4 w-4 text-[#DA9352]' />
+              <p className='font-bold'>3.4</p>
+          </div>
+          <div className='flex gap-2 items-center  font-medium  '>
+              <Icon icon="fluent:people-checkmark-24-filled"  className='h-4 w-4' />
+              <p className='font-bold'>200</p>
+          </div>
+
+
+          </div>
         </p>
         </div>
         <Link href={`/event-details/${event.id || ""}`}>
