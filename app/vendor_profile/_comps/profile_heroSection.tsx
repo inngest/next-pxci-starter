@@ -23,8 +23,8 @@ export const HeroSection = () => {
     src={logo} alt={'Vendor Logo'}/>
     <div>
 <h2 className='text-3xl font-bold'>FAVOUR ENTERTAINMENT</h2>
-<div className='flex gap-2 items-center  font-medium  '>
-<Icon icon="fluent:star-20-filled"  className='h-8 w-8 text-[#DA9352]' />
+<div className='flex gap-2  items-bottom  font-medium  '>
+<Icon icon="fluent:star-20-filled"  className=' h- h-5 w-5 text-[#DA9352]' />
 <p className='font-bold'>3.4</p>
 <p className='text-18 opacity-75'>Event Planner | Decorator | Chairs Rental</p>
 </div>
