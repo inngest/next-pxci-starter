@@ -11,6 +11,7 @@ import {
     AlertDialogTrigger,
   } from "@/components/ui/alert-dialog"
 import { Button } from '@/components/ui/button'
+import { CreateOrgAccount } from './createOrgAccount'
   
 
 
@@ -26,8 +27,12 @@ export const CreateEvent = () => {
             <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your account
-                and remove your data from our servers.
+
+              <CreateOrgAccount/>
+
+              
+                {/* This action cannot be undone. This will permanently delete your account
+                and remove your data from our servers. */}
             </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
@@ -35,6 +40,7 @@ export const CreateEvent = () => {
             <AlertDialogAction>Continue</AlertDialogAction>
             </AlertDialogFooter>
         </AlertDialogContent>
+
     </AlertDialog>
 
   )
