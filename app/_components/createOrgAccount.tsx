@@ -7,6 +7,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 interface FormValues {
   organizationName: string;
   address: string;
+  state: string;
+  country: string;
   mainPhone: string;
   services: string[];
   aboutOrganization: string;
@@ -44,7 +46,7 @@ export const CreateOrgAccount: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className='bg-secondary w-fit p-4 rounded-3xl'>
       <div>
         <label>Organization Name:</label>
         <input 
@@ -56,6 +58,24 @@ export const CreateOrgAccount: React.FC = () => {
         <input 
          className='block border p-2'
         type="text" {...register('address')} />
+      </div>
+      <div>
+        <label>State:</label>
+        <input 
+         className='block border p-2'
+        type="text" {...register('state')} />
+      </div>
+      <div>
+        <label>Country:</label>
+        <input 
+         className='block border p-2'
+        type="text" {...register('country')} />
+      </div>
+      <div>
+        <label>State:</label>
+        <input 
+         className='block border p-2'
+        type="text" {...register('state')} />
       </div>
       <div>
         <label>Main Phone:</label>
