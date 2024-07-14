@@ -119,3 +119,14 @@
       @apply bg-background text-foreground;
     }
   }
+
+  input , textarea {
+    @apply shadow-sm w-full rounded-lg border-none my-1 
+  }
+input{
+  @apply hover:shadow-lg transition-shadow animate-in duration-150 ease-out
+}
+
+  label{
+    @apply text-sm pl-2
+  }

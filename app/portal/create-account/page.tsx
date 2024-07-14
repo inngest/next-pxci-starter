@@ -9,8 +9,11 @@ const CreateAccount = () => {
       <div className='w-[50%] bg-green-500 rounded-3xl'>
         <Image src={''} alt={''}/>
       </div>
+<div className='bg-secondary  rounded-3xl p-4 space-y-4'>
+<h2 className='font-bold text-lg border-b-2 p-2'>Create organization account.</h2>
 
         <CreateOrgAccount/>
+</div>
 
     </div>
   )
