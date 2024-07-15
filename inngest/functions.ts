@@ -1,4 +1,4 @@
-import { user } from "@prisma/client";
+import { Prisma, user } from "@prisma/client";
 import { inngest } from "./client";
 import OpenAI from "openai";
 
@@ -63,26 +63,42 @@ export const syncUserFromClerk = inngest.createFunction(
   { event: "app/user.synced" },
 
   async ({ event, step, prisma }) => {
-   
     const user: user = event.data;
 
- 
     const upsertUser = await prisma.user.upsert({
       where: { clerkUserId: user.clerkUserId },
       update: {
+        organizationName: user.organizationName,
+        state: user.state,
+        address: user.address,
+        phone: user.phone,
+        aboutUs: user.aboutUs,
+        fblink: user.fblink,
+        iglink: user.iglink,
+        xlink: user.xlink,
         email: user.email,
+        profilePic: user.profilePic,
+
         role: user.role,
-     
+        xata_updatedat: new Date(),
       },
       create: {
-        clerkUserId: user.clerkUserId,
+        organizationName: user.organizationName,
+        state: user.state,
+        address: user.address,
+        phone: user.phone,
+        aboutUs: user.aboutUs,
+        fblink: user.fblink,
+        iglink: user.iglink,
+        xlink: user.xlink,
         email: user.email,
-        firstName: user.firstName,
         profilePic: user.profilePic,
-        lastName: user.lastName,
+        isAdmin: user.isAdmin,
+        isActive: user.isActive,
+        clerkUserId: user.clerkUserId,
         role: user.role,
-
-        
+        xata_createdat: new Date(),
+        xata_updatedat: new Date(),
       },
     });
 
@@ -92,4 +108,34 @@ export const syncUserFromClerk = inngest.createFunction(
   }
 );
 
+export const createEvent = inngest.createFunction(
+  { id: "create-event" },
+  { event: "app/event.create" },
 
+  async ({ event, step, prisma }) => {
+    const eventData = event.data;
+
+    const newEvent = await prisma.event.create({
+      data: {
+        xata_id: eventData.xata_id,
+        name: eventData.name,
+        eventDate: eventData.eventDate,
+        eventDetails: eventData.eventDetails,
+        eventCategory: eventData.eventCategory,
+        rsvpName: eventData.rsvpName,
+        rsvpTel: eventData.rsvpTel,
+        eventImage: eventData.eventImage,
+        state: eventData.state,
+        address: eventData.address,
+        ticketImage: eventData.ticketImage,
+        eventLogo: eventData.eventLogo,
+        ticketPrice: eventData.ticketPrice,
+        ticketDescription: eventData.ticketDescription,
+      },
+    });
+
+    console.log("Event created:", newEvent);
+
+    return { status: "Event created successfully", event: newEvent };
+  }
+);

@@ -19,6 +19,7 @@
     "@xata.io/client": "^0.29.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "firebase": "^10.12.3",
     "inngest": "^3.19.18",
     "lucide-react": "^0.403.0",
     "next": "14.2.4",
@@ -26,6 +27,7 @@
     "pg": "^8.12.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-hook-form": "^7.52.1",
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7"
   },

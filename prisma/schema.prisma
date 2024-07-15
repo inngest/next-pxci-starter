@@ -18,27 +18,59 @@ model messages {
 }
 
 model user {
-  xata_id        String   @unique(map: "_pgroll_user_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
-  firstName      String
-  lastName       String
-  email          String   @unique
-  profilePic     String
-  isAdmin        Boolean? @default(false)
-  isActive       Boolean? @default(true)
-  xata_createdat DateTime @default(now()) @db.Timestamptz(6)
-  clerkUserId    String   @unique
-  role           Role     @default(USER)
+  id               Int      @id @default(autoincrement())
+  organizationName String
+  state            String
+  address          String
+  phone            String
+  aboutUs          String
+  fblink           String
+  iglink           String
+  xlink            String
+  email            String   @unique
+  profilePic       String
+  isAdmin          Boolean? @default(false)
+  isActive         Boolean? @default(true)
+  createdat        DateTime @default(now()) @db.Timestamptz(6)
+  clerkUserId      String   @unique
+  role             Role     @default(USER)
+  xata_updatedat   DateTime @default(now()) @db.Timestamptz(6)
+  xata_id          String   @unique(map: "user__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version     Int      @default(0)
+  xata_createdat   DateTime @default(now()) @db.Timestamptz(6)
+  createdEvent     event[]
 }
 
 model event {
-  xata_id       String     @unique(map: "_pgroll_event_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
-  name          String
-  eventDate     DateTime[]
-  eventDetails  String
-  eventCategory String
-  rsvpName      String
-  rsvpTel       Int
-  eventImage    String
+  id                Int               @id @default(autoincrement())
+  name              String
+  eventDate         DateTime[]
+  eventDetails      String
+  eventCategory     String
+  rsvpName          String
+  rsvpTel           Int
+  eventImage        String
+  eventLogo         String
+  state             String
+  address           String
+  ticketImage       String
+  ticketPrice       Float
+  ticketDescription String
+  userId            Int?
+  xata_id           String            @unique(map: "event__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))
+  xata_version      Int               @default(0)
+  xata_createdat    DateTime          @default(now()) @db.Timestamptz(6)
+  xata_updatedat    DateTime          @default(now()) @db.Timestamptz(6)
+  socialMediaLinks  SocialMediaLink[]
+  user              user?             @relation(fields: [userId], references: [id])
+}
+
+model SocialMediaLink {
+  id       Int    @id @default(autoincrement())
+  platform String
+  url      String
+  eventId  Int
+  event    event  @relation(fields: [eventId], references: [id])
 }
 
 enum Role {
