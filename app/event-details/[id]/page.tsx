@@ -55,17 +55,17 @@ const EventDetailsPage = ({ params: { id } }: Props) => {
           <div className="bg-white shadow-md  py-2 overflow-hidden flex flex-col gap-3 rounded-3xl px-2 w-[350px] border border-[#022543] ">
             <div className="flex flex-row justify-between px-3 items-center border-b py-2">
               <p>Digital</p>
-              <p className="text-sm text-gray-600">2:00 am</p>
+              <p className="text-sm text-gray-600"> 4, Dec 24 | 8:30pm </p>
 
-              <div className="w-fit flex gap-2">
+              <div className="w-fit flex gap-1">
 
-              <Button size={'sm'}  variant={'outline'}><Global_Icon iconName={"eva:edit-2-fill"} className=""/> </Button>
-              <Button size={'sm'} variant={'outline'} className=" space-x-2"> <Global_Icon iconName={"jam:trash-f"} className=""/>  </Button>
+              <Button title="Edit event details" className="shadow-sm " size={'sm'} variant={'outline'} ><Global_Icon iconName={"eva:edit-2-fill"} /> </Button>
+              <Button title="Delete this event" size={'sm'} variant={'outline'}  className=" space-x-2 shadow-sm "> <Global_Icon iconName={"jam:trash-f"} />  </Button>
               </div>
 
             </div>
 
-            <p className="text-2xl leading-normal font-bold ">
+            <p className="text-3xl leading-normal font-bold ">
               FAVOUR ENTERTAINMENT CAMPUS TOUR
             </p>
 
