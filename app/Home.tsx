@@ -7,7 +7,7 @@ const App = () => {
   const [category, setCategory] = React.useState("All Categories");
 
   return (
-    <div className="container md:mx-auto p-4 md:max-w-[90%]  w-full">
+    <div className="w-full max-w-screen">
       {/* <CategoryFilter category={category} setCategory={setCategory} /> */}
 
       <EventList />

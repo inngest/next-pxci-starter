@@ -23,23 +23,16 @@ export const CreateEvent = () => {
         <AlertDialogTrigger asChild>
         <Button>Create a New Event</Button>
         </AlertDialogTrigger>
-        <AlertDialogContent>
+        <AlertDialogContent className='min-w-[90%] h-[75vh] overflow-y-scroll'>
             <AlertDialogHeader>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-
+              </AlertDialogHeader>
+            
               <CreateOrgAccount/>
 
-              
-                {/* This action cannot be undone. This will permanently delete your account
-                and remove your data from our servers. */}
-            </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogAction>Continue</AlertDialogAction>
-            </AlertDialogFooter>
-        </AlertDialogContent>
+
+             </AlertDialogContent>
 
     </AlertDialog>
 

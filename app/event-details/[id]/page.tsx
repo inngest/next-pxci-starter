@@ -2,6 +2,9 @@ import Hero from "@/app/_components/Hero";
 import React from "react";
 import Map from "../../../public/images/Rectangle 2.svg";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Icon } from "@iconify/react/dist/iconify.js";
+import { Global_Icon } from "@/app/_components/global_Icon";
 
 interface Props {
   params: {
@@ -46,23 +49,33 @@ const EventDetailsPage = ({ params: { id } }: Props) => {
           </p>
         </article>
 
-        <div className="flex-1 mt-[-100px] z-10">
-          <div className="bg-white shadow-md  py-2 overflow-hidden flex flex-col gap-3 rounded-[30px] px-4 max-w-[400px] border border-[#022543] ">
+        <div className="flex- mt-[-100px] ml-[-100px] z-10">
+{/* Edit and delete event */}
+
+          <div className="bg-white shadow-md  py-2 overflow-hidden flex flex-col gap-3 rounded-3xl px-2 w-[350px] border border-[#022543] ">
             <div className="flex flex-row justify-between px-3 items-center border-b py-2">
               <p>Digital</p>
               <p className="text-sm text-gray-600">2:00 am</p>
+
+              <div className="w-fit flex gap-2">
+
+              <Button size={'sm'}  variant={'outline'}><Global_Icon iconName={"eva:edit-2-fill"} className=""/> </Button>
+              <Button size={'sm'} variant={'outline'} className=" space-x-2"> <Global_Icon iconName={"jam:trash-f"} className=""/>  </Button>
+              </div>
+
             </div>
-            <p className=" text-[#022543] text-3xl leading-normal font-bold ">
+
+            <p className="text-2xl leading-normal font-bold ">
               FAVOUR ENTERTAINMENT CAMPUS TOUR
             </p>
 
             <Image src={Map} className="w-full h-48 object-cover" alt="map" />
-            <p className="text-gray-700">
+            <p className="text-gray-700 text-sm">
               3 Lekki-Epe Expressway, Victoria Island, Lagos 1010, Lagos
             </p>
-            <button className="mt-2 bg-white text-[#022543] text-2xl border-2 border-[#022543] w-full   py-1 px-3 rounded-[30px]">
+            <Button size={'sm'} className="mt-2  w-full   py-1 px-3 rounded-full">
               Book Ticket - ₦0
-            </button>
+            </Button>
           </div>
         </div>
       </section>

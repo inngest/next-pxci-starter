@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import evtImg from "../../public/images/Rectangle 1.svg";
+import evtImg from "../../public/images/musicfestLogo.png";
 
 import EventCard from "./EventCard";
 import CategoryFilter from "./CategoryList";
@@ -40,6 +40,78 @@ const events = [
     image: evtImg,
     time: "2:00 PM - 6:00 PM",
   },
+
+  {
+    id: 1,
+    date: "2024-12-04",
+    category: "Music Concert",
+    title: "Music Fest",
+    eventType: "Digital",
+    organizer: "Favour Entertainment",
+    location: "National Stadium, Lagos",
+    image: evtImg,
+    time: "2:00 PM - 6:00 PM",
+  },
+
+  {
+    id: 1,
+    date: "2024-12-04",
+    category: "Music Concert",
+    title: "Music Fest",
+    eventType: "Digital",
+    organizer: "Favour Entertainment",
+    location: "National Stadium, Lagos",
+    image: evtImg,
+    time: "2:00 PM - 6:00 PM",
+  },
+
+  {
+    id: 1,
+    date: "2024-12-04",
+    category: "Music Concert",
+    title: "Music Fest",
+    eventType: "Digital",
+    organizer: "Favour Entertainment",
+    location: "National Stadium, Lagos",
+    image: evtImg,
+    time: "2:00 PM - 6:00 PM",
+  },
+
+  {
+    id: 1,
+    date: "2024-12-04",
+    category: "Music Concert",
+    title: "Music Fest",
+    eventType: "Digital",
+    organizer: "Favour Entertainment",
+    location: "National Stadium, Lagos",
+    image: evtImg,
+    time: "2:00 PM - 6:00 PM",
+  },
+
+  {
+    id: 1,
+    date: "2024-12-04",
+    category: "Music Concert",
+    title: "Music Fest",
+    eventType: "Digital",
+    organizer: "Favour Entertainment",
+    location: "National Stadium, Lagos",
+    image: evtImg,
+    time: "2:00 PM - 6:00 PM",
+  },
+
+  {
+    id: 1,
+    date: "2024-12-04",
+    category: "Music Concert",
+    title: "Music Fest",
+    eventType: "Digital",
+    organizer: "Favour Entertainment",
+    location: "National Stadium, Lagos",
+    image: evtImg,
+    time: "2:00 PM - 6:00 PM",
+  },
   // Add more events
 ];
 
@@ -58,8 +130,8 @@ const EventList = () => {
   });
 
   return (
-    <div>
-      <div className="max-w-[1291px] mx-auto">
+    <div className="flex flex-col items-center justify-center">
+      <div className="">
         <CategoryFilter
           category={selectedCategory}
           setCategory={setSelectedCategory}
@@ -67,12 +139,15 @@ const EventList = () => {
           setDate={setSelectedDate}
         />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-4 md:mx-15 xl:mx-20">
+      <div className="flex  justify-center items-center">
+
+      <div className="grid  justify-center items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-4">
         {filteredEvents.map((event) => (
           <div key={event.id}>
             <EventCard event={event} />
           </div>
         ))}
+      </div>
       </div>
     </div>
   );
