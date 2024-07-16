@@ -81,10 +81,10 @@ const CreateEventForm: React.FC<CreateEventFormProps> = ({
   return (
     <form className="flex flex-row  items-top gap-10">
       <article className="flex-1">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
           <div className="col-span-1 md:col-span-2">
             <label
-              className="block text-sm md:text-xl text-primary font-medium mb-1"
+              className="block text-sm text-primary font-medium "
               htmlFor="event-name"
             >
               Event name:
@@ -98,8 +98,8 @@ const CreateEventForm: React.FC<CreateEventFormProps> = ({
           </div>
           <div className="col-span-1 md:col-span-2">
             <label
-              className="block text-sm md:text-xl text-primary font-medium mb-1"
-              htmlFor="state"
+            className="block text-sm text-primary font-medium "             
+             htmlFor="state"
             >
               State:
             </label>
@@ -112,8 +112,8 @@ const CreateEventForm: React.FC<CreateEventFormProps> = ({
           </div>
 
           <div className="col-span-1 md:col-span-2">
-            <label
-              className="block text-sm md:text-xl text-primary font-medium mb-1"
+          <label
+            className="block text-sm text-primary font-medium "    
               htmlFor="category"
             >
               Category
@@ -126,8 +126,8 @@ const CreateEventForm: React.FC<CreateEventFormProps> = ({
             />
           </div>
           <div className="col-span-1 md:col-span-2">
-            <label
-              className="block text-sm md:text-xl text-primary font-medium mb-1"
+          <label
+            className="block text-sm text-primary font-medium "    
               htmlFor="address"
             >
               Event Address:
@@ -213,8 +213,8 @@ const CreateEventForm: React.FC<CreateEventFormProps> = ({
             </div>
           </div> */}
           <div className="col-span-1 md:col-span-2">
-            <label
-              className="block text-sm md:text-xl text-primary font-medium mb-1"
+          <label
+            className="block text-sm text-primary font-medium "    
               htmlFor="details"
             >
               Details:
@@ -227,7 +227,7 @@ const CreateEventForm: React.FC<CreateEventFormProps> = ({
             ></textarea>
           </div>
           <div className="col-span-1 md:col-span-2">
-            <label className="block text-sm md:text-xl text-primary font-medium mb-1">
+          <label    className="block text-sm text-primary font-medium "    >
               RSVP:
             </label>
             <div className="flex space-x-4">
@@ -295,7 +295,8 @@ const CreateEventForm: React.FC<CreateEventFormProps> = ({
             </div>
           </div> */}
           <div className="col-span-1 md:col-span-2 mb-5">
-            <label className="block text-sm md:text-xl text-primary font-medium mb-1">
+          <label
+            className="block text-sm text-primary font-medium "    >
               Social Media Links:
             </label>
             {fields.map((field, index) => (

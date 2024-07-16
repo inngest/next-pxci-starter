@@ -170,10 +170,10 @@
   }
 
   input , textarea {
-    @apply shadow-sm w-full rounded-lg border-none my-1 
+    @apply shadow-sm w-full rounded-lg border-none my-1 bg-secondary border-foreground
   }
 input{
-  @apply hover:shadow-lg transition-shadow animate-in duration-150 ease-out
+  @apply hover:shadow-lg transition-shadow animate-in duration-150 ease-out 
 }
 
   label{

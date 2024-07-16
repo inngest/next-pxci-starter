@@ -7,6 +7,7 @@ import { Global_Icon } from './global_Icon';
 import { Button } from "@/components/ui/button";
 import { inngest } from "@/inngest";
 import { useUser } from "@clerk/nextjs";
+import { toast } from '@/components/ui/use-toast';
 
 
 interface FormValues {
@@ -75,6 +76,14 @@ export const CreateOrgAccount: React.FC = () => {
         console.log("User synced successfully");
     }
     
+    
+    toast({
+      title: "Success: Great work!",
+      description: "You will be redirected shortly ",
+    })
+
+
+
   catch (error) {
     console.error("Error syncing user:", error);
   }
@@ -106,10 +115,10 @@ export const CreateOrgAccount: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='w-fit space-y-4  '>
-    <form
+    {/* <form
       onSubmit={handleSubmit(onSubmit)}
       className="bg-secondary w-fit p-4 rounded-3xl"
-    >
+    > */}
       <div>
         <label>Organization Name:</label>
         <input
@@ -197,9 +206,9 @@ export const CreateOrgAccount: React.FC = () => {
         <div className='bg-secondary mix-blend-multiply p-3 rounded-md pb-2'>
 
         <div className='flex gap-2 items-center'>
-          <select
+          {/* <select
            className='block border p-2 rounded-lg'
-        <div className="flex">
+        <div className="flex"> */}
           <select
             className="block border p-2"
             value={newSocialMedia.platform}
@@ -234,6 +243,7 @@ export const CreateOrgAccount: React.FC = () => {
             </div>
           ))}
         </div>
+      </div>
       </div>
       <button type="submit">Submit</button>
     </form>
