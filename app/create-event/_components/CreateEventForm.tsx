@@ -40,6 +40,22 @@ const CreateEventForm: React.FC<CreateEventFormProps> = ({
 
   const [previewImages, setPreviewImages] = useState<string[]>([]);
 
+  // const handleImageChange = (
+  //   e: React.ChangeEvent<HTMLInputElement>,
+  //   type: string
+  // ) => {
+  //   if (e.target.files) {
+  //     const files = Array.from(e.target.files).map((file) => ({ file, type }));
+  //     const previewURLs = Array.from(e.target.files).map((file) =>
+  //       URL.createObjectURL(file)
+  //     );
+
+  //     setPreviewImages((prev) => [...prev, ...previewURLs]);
+  //     setUploadedImages((prev) => [...prev, ...files]);
+  //     setValue(type as any, e.target.files); // Update form value with selected files
+  //   }
+  // };
+
   const handleImageChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     type: string
@@ -50,13 +66,12 @@ const CreateEventForm: React.FC<CreateEventFormProps> = ({
         URL.createObjectURL(file)
       );
 
-      setPreviewImages((prev) => [...prev, ...previewURLs]);
-      setUploadedImages((prev) => [...prev, ...files]);
-      setValue(type as any, e.target.files); // Update form value with selected files
+      setPreviewImages([...previewImages, ...previewURLs]);
+      setUploadedImages([...uploadedImages, ...files]);
+      setValue(type, e.target.files[0]); // Update form value with selected files
     }
   };
-  
-  const { register, control, setValue, watch } = useFormContext<FormData>();
+  const { register, control, setValue, watch } = useFormContext();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -238,7 +253,7 @@ const CreateEventForm: React.FC<CreateEventFormProps> = ({
                   Tel:
                 </label>
                 <input
-                  type="text"
+                  type="number"
                   id="rsvp-tel"
                   {...register("rsvpTel", { required: true })}
                   className="w-full p-2 border rounded-md"
@@ -360,7 +375,7 @@ const CreateEventForm: React.FC<CreateEventFormProps> = ({
           <div key={index} className="mb-2">
             <label className="block text-sm font-medium text-gray-700">
               {index < uploadedImages.length &&
-              uploadedImages[index].type === "eventImages"
+              uploadedImages[index].type === "eventImage"
                 ? "Event Image Preview:"
                 : "Event Logo Preview:"}
             </label>
@@ -392,7 +407,7 @@ const CreateEventForm: React.FC<CreateEventFormProps> = ({
             type="file"
             id="event-logo"
             {...register("eventLogo", { required: true })}
-            onChange={(e) => handleImageChange(e, "eventImages")}
+            onChange={(e) => handleImageChange(e, "eventLogos")}
             className="w-full p-2 border rounded-md"
           />
         </div>

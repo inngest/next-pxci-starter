@@ -54,17 +54,16 @@ const EventPage = () => {
           return { type: imageObj.type, url };
         });
 
-        
-
         const uploadedUrls = await Promise.all(imageUploads);
 
-        console.log(uploadedUrls)
+        console.log(uploadedUrls);
 
         const updatedData = { ...data };
         uploadedUrls.forEach((upload) => {
-          if (upload.type === "eventImage") updatedData.eventImage = upload.url;
-          if (upload.type === "eventLogo") updatedData.eventLogo = upload.url;
-          if (upload.type === "ticketImage")
+          if (upload.type === "eventImages")
+            updatedData.eventImage = upload.url;
+          if (upload.type === "eventLogos") updatedData.eventLogo = upload.url;
+          if (upload.type === "ticketImages")
             updatedData.ticketImage = upload.url;
         });
         // Upload images and get URLs

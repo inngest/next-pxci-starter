@@ -48,13 +48,13 @@ model event {
   eventDetails      String
   eventCategory     String
   rsvpName          String
-  rsvpTel           Int
+  rsvpTel           String
   eventImage        String
   eventLogo         String
   state             String
   address           String
   ticketImage       String
-  ticketPrice       Float
+  ticketPrice       String
   ticketDescription String
   userId            Int?
   xata_id           String            @unique(map: "event__pgroll_new_xata_id_key") @default(dbgenerated("('rec_'::text || (xata_private.xid())::text)"))

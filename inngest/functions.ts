@@ -117,7 +117,7 @@ export const createEvent = inngest.createFunction(
 
     const newEvent = await prisma.event.create({
       data: {
-        xata_id: eventData.xata_id,
+       
         name: eventData.name,
         eventDate: eventData.eventDate,
         eventDetails: eventData.eventDetails,
