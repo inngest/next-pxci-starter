@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useState } from "react";
+import CreateEventForm from "./_components/CreateEventForm";
+import TicketForm from "./_components/TicketForm";
+import EventPage from "./EventPage";
 
 const page = () => {
-  return (
-    <section className=" flex flex-row justify-between space-x-10 mx-20 p-6">
-        <div>
-            
-        </div>
-    </section>
-  )
-}
 
-export default page
+ 
+  
+  return (
+    <main className=" pl-6">
+     <EventPage/>
+    </main>
+  );
+};
+
+export default page;

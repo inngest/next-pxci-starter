@@ -1,5 +1,5 @@
-import { messageSent, syncUserFromClerk } from "./functions";
+import { createEvent, messageSent, syncUserFromClerk } from "./functions";
 
-export const functions = [messageSent, syncUserFromClerk ];
+export const functions = [messageSent, syncUserFromClerk, createEvent];
 
 export { inngest } from "./client";

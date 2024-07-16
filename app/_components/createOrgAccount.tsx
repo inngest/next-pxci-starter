@@ -1,10 +1,13 @@
-'use client'
+"use client";
 
-import { Button } from '@/components/ui/button';
 import { Icon } from '@iconify/react/dist/iconify.js';
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Global_Icon } from './global_Icon';
+import { Button } from "@/components/ui/button";
+import { inngest } from "@/inngest";
+import { useUser } from "@clerk/nextjs";
+
 
 interface FormValues {
   organizationName: string;
@@ -20,75 +23,133 @@ interface FormValues {
 export const CreateOrgAccount: React.FC = () => {
   const { register, handleSubmit, reset } = useForm<FormValues>();
   const [services, setServices] = useState<string[]>([]);
-  const [socialMedia, setSocialMedia] = useState<{ platform: string; link: string }[]>([]);
-  const [newService, setNewService] = useState<string>('');
-  const [newSocialMedia, setNewSocialMedia] = useState<{ platform: string; link: string }>({ platform: '', link: '' });
+  const [socialMedia, setSocialMedia] = useState<
+    { platform: string; link: string }[]
+  >([]);
+  const [newService, setNewService] = useState<string>("");
+  const [newSocialMedia, setNewSocialMedia] = useState<{
+    platform: string;
+    link: string;
+  }>({ platform: "", link: "" });
+  const { user } = useUser();
 
-  const onSubmit: SubmitHandler<FormValues> = data => {
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
     data.services = services;
     data.socialMedia = socialMedia;
-    console.log('Form submitted successfully:', data);
+    console.log("Form submitted successfully:", data);
+
+    if (user) {
+      const socialMediaLinks = data.socialMedia.reduce(({acc, sm}:any)=> {
+        if (sm.platform.toLowerCase() === 'facebook') {
+          acc.fblink = sm.link;
+        } else if (sm.platform.toLowerCase() === 'instagram') {
+          acc.iglink = sm.link;
+        } else if (sm.platform.toLowerCase() === 'twitter') {
+          acc.xlink = sm.link;
+        }
+        return acc;
+      }, { fblink: '', iglink: '', xlink: '' });
+    
+    // Send your event payload to Inngest
+  
+    try{
+      await inngest.send({
+          name: "app/user.synced",
+          data: {
+            clerkUserId: user.id,
+            email: user.emailAddresses[0].emailAddress,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            profilePic: user.imageUrl,
+            role: "USER",
+            organizationName: data.organizationName,
+            address: data.address,
+            state: data.state,
+            country: data.country,
+            phone: data.mainPhone,
+            aboutUs: data.aboutOrganization,
+            services: data.services,
+            ...socialMediaLinks,
+          },
+        });
+        console.log("User synced successfully");
+    }
+    
+  catch (error) {
+    console.error("Error syncing user:", error);
+  }
+    }
+
+    // Sync user data with Inngest
+
     reset();
     setServices([]);
     setSocialMedia([]);
   };
 
   const handleAddService = () => {
-    if (newService.trim() !== '') {
+    if (newService.trim() !== "") {
       setServices([...services, newService.trim()]);
-      setNewService('');
+      setNewService("");
     }
   };
 
   const handleAddSocialMedia = () => {
-    if (newSocialMedia.platform.trim() !== '' && newSocialMedia.link.trim() !== '') {
+    if (
+      newSocialMedia.platform.trim() !== "" &&
+      newSocialMedia.link.trim() !== ""
+    ) {
       setSocialMedia([...socialMedia, newSocialMedia]);
-      setNewSocialMedia({ platform: '', link: '' });
+      setNewSocialMedia({ platform: "", link: "" });
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className='w-fit space-y-4  '>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="bg-secondary w-fit p-4 rounded-3xl"
+    >
       <div>
         <label>Organization Name:</label>
-        <input 
-         className='block border p-2'
-        type="text" {...register('organizationName')} />
+        <input
+          className="block border p-2"
+          type="text"
+          {...register("organizationName")}
+        />
       </div>
       <div>
         <label>Address:</label>
-        <input 
-         className='block border p-2'
-        type="text" {...register('address')} />
+        <input
+          className="block border p-2"
+          type="text"
+          {...register("address")}
+        />
       </div>
       <div>
         <label>State:</label>
-        <input 
-         className='block border p-2'
-        type="text" {...register('state')} />
+        <input
+          className="block border p-2"
+          type="text"
+          {...register("state")}
+        />
       </div>
       <div>
         <label>Country:</label>
-        <input 
-         className='block border p-2'
-        type="text" {...register('country')} />
+        <input
+          className="block border p-2"
+          type="text"
+          {...register("country")}
+        />
       </div>
-      <div>
-        <label>State:</label>
-        <input 
-         className='block border p-2'
-        type="text" {...register('state')} />
-      </div>
+
       <div>
         <label>Main Phone:</label>
         <input
-         className='block border p-2'
-        type="text" {...register('mainPhone', {
-          pattern: {
-            value: /^\+\d{1,3}\s?\d{4,14}$/,
-            message: 'Invalid phone number format'
-          }
-        })} />
+          className="block border p-2"
+          type="text"
+          {...register("mainPhone")}
+        />
       </div>
       <div>
         <label>Type of services you render:</label>
@@ -105,22 +166,31 @@ export const CreateOrgAccount: React.FC = () => {
             </div>
 
           <input
-          className='block border p-2'
+            className="block border p-2"
             type="text"
             value={newService}
             onChange={(e) => setNewService(e.target.value)}
-            onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); handleAddService(); } }}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault();
+                handleAddService();
+              }
+            }}
           />
           <Button variant={'outline'} size={'sm'} type="button" onClick={handleAddService}>+</Button>
+          <Button type="button" onClick={handleAddService}>
+            Add Service
+          </Button>
         </div>
         </div>
    
       </div>
       <div>
         <label>About your organization:</label>
-        <textarea 
-         className='block border p-2'
-        {...register('aboutOrganization')}></textarea>
+        <textarea
+          className="block border p-2"
+          {...register("aboutOrganization")}
+        ></textarea>
       </div>
       <div>
         <label>Social media:</label>
@@ -129,8 +199,13 @@ export const CreateOrgAccount: React.FC = () => {
         <div className='flex gap-2 items-center'>
           <select
            className='block border p-2 rounded-lg'
+        <div className="flex">
+          <select
+            className="block border p-2"
             value={newSocialMedia.platform}
-            onChange={(e) => setNewSocialMedia({ ...newSocialMedia, platform: e.target.value })}
+            onChange={(e) =>
+              setNewSocialMedia({ ...newSocialMedia, platform: e.target.value })
+            }
           >
             <option value="" > Select </option>
             <option value="Facebook"><Global_Icon iconName={'fa:facebook-square'}/>Facebook</option>
@@ -139,13 +214,17 @@ export const CreateOrgAccount: React.FC = () => {
             <option value="Instagram"><Global_Icon iconName={'f7:logo-instagram'}/>Instagram</option>
           </select>
           <input
-           className='block border p-2'
+            className="block border p-2"
             type="text"
             value={newSocialMedia.link}
-            onChange={(e) => setNewSocialMedia({ ...newSocialMedia, link: e.target.value })}
+            onChange={(e) =>
+              setNewSocialMedia({ ...newSocialMedia, link: e.target.value })
+            }
             placeholder="Link"
           />
-          <Button type="button" onClick={handleAddSocialMedia}>+</Button>
+          <Button type="button" onClick={handleAddSocialMedia}>
+            +
+          </Button>
         </div>
         <div className='space-y-1'>
           {socialMedia.map((sm, index) => (
@@ -156,10 +235,7 @@ export const CreateOrgAccount: React.FC = () => {
           ))}
         </div>
       </div>
-        </div>
-      <Button className='w-full font-semibold' type="submit">Create Organization Account</Button>
+      <button type="submit">Submit</button>
     </form>
   );
 };
-
-

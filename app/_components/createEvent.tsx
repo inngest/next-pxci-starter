@@ -1,40 +1,35 @@
-import React from 'react'
+import React from "react";
 import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-  } from "@/components/ui/alert-dialog"
-import { Button } from '@/components/ui/button'
-import { CreateOrgAccount } from './createOrgAccount'
-  
-
-
-
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { CreateOrgAccount } from "./createOrgAccount";
+import EventPage from "../create-event/EventPage";
 
 export const CreateEvent = () => {
   return (
     <AlertDialog>
-        <AlertDialogTrigger asChild>
+      <AlertDialogTrigger asChild>
         <Button>Create a New Event</Button>
-        </AlertDialogTrigger>
-        <AlertDialogContent className='min-w-[90%] h-[75vh] overflow-y-scroll'>
-            <AlertDialogHeader>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-              </AlertDialogHeader>
-            
-              <CreateOrgAccount/>
+      </AlertDialogTrigger>
+      <AlertDialogContent className="  h-full min-w-[90%] overflow-scroll">
+        <AlertDialogHeader className="flex justify-end w-full">
+          <AlertDialogCancel className="w-fit ">Cancel</AlertDialogCancel>
+        </AlertDialogHeader>
+        <AlertDialogDescription>
+          <EventPage />
+        </AlertDialogDescription>
 
-
-             </AlertDialogContent>
-
+        <AlertDialogFooter></AlertDialogFooter>
+      </AlertDialogContent>
     </AlertDialog>
-
-  )
-}
+  );
+};
