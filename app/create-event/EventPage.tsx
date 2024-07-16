@@ -9,6 +9,7 @@ import CreateTicketForm from "./_components/CreateTicketForm";
 import { inngest } from "@/inngest";
 import { event } from "@prisma/client";
 import { uploadImageToFirebase } from "@/config/upload-media";
+import { toast } from "@/components/ui/use-toast";
 
 interface UploadedImage {
   file: File;
@@ -89,6 +90,12 @@ const EventPage = () => {
           name: "app/event.create",
           data: updatedData,
         });
+
+        toast({
+          title: "Success: Great work!",
+          description: "You will be redirected shortly ",
+        })
+
 
         console.log("Event created:", data);
       } catch (error) {
